@@ -5,6 +5,7 @@ Sistema distribuido de gestion de pedidos de delivery implementado con JADE (Jav
 ## Participantes
 - Ashly Chavez 22200012
 - Ashly Surichaqui 22200207
+- Marilu Huarcaya 22200122
 ## Descripcion
 
 Este proyecto simula un sistema de delivery donde agentes autonomos colaboran para gestionar pedidos desde la solicitud hasta la entrega. Los agentes se comunican mediante mensajes ACL siguiendo el estandar FIPA.
@@ -25,6 +26,19 @@ El Agente Cliente es responsable de:
 - Buscar el servicio de coordinacion en Yellow Pages (DF)
 - Enviar mensajes REQUEST al coordinador
 - Recibir confirmacion del pedido
+
+## Agente Restaurante (Trabajo de Marilu Huarcaya Alva)
+
+El Agente Restaurante se encarga de:
+- Registrarse como **"servicio-restaurante"** en Yellow Pages  
+- Mantener un **menú hardcodeado** con tiempos de preparación y precios:  
+  - Pizza: 15 seg, $25  
+  - Hamburguesa: 10 seg, $18  
+  - Sushi: 20 seg, $35  
+- Recibir pedidos desde el Coordinador  
+- Simular la preparación de los platos (esperar X segundos según el tiempo del menú)  
+- Buscar agentes **Repartidor** en Yellow Pages  
+- Enviar un mensaje INFORM al Repartidor con los detalles del pedido   
 
 ## Estructura del Proyecto
 ```
