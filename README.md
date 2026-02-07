@@ -6,6 +6,7 @@ Sistema distribuido de gestion de pedidos de delivery implementado con JADE (Jav
 - Ashly Chavez 22200012
 - Ashly Surichaqui 22200207
 - Marilu Huarcaya 22200122
+- Monica Mendoza 22200059
 ## Descripcion
 
 Este proyecto simula un sistema de delivery donde agentes autonomos colaboran para gestionar pedidos desde la solicitud hasta la entrega. Los agentes se comunican mediante mensajes ACL siguiendo el estandar FIPA.
