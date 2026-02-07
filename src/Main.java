@@ -62,6 +62,14 @@ public class Main {
             restauranteC.start();
             Thread.sleep(1000);
 
+            // 4️⃣ AGENTE REPARTIDOR (Persona 4)
+            AgentController repartidor = contenedor.createNewAgent(
+                    "Repartidor1",
+                    "agentes.RepartidorAgent",
+                    null
+            );
+            repartidor.start();
+            Thread.sleep(500);
 
             // 5️⃣ AGENTE CLIENTE (Persona 1)
             AgentController cliente = contenedor.createNewAgent(
