@@ -10,7 +10,7 @@ import java.util.*;
 
 public class CoordinadorAgent extends Agent {
 
-    private Map<String, String> menuRestaurantes;
+
 
     protected void setup() {
         System.out.println("Agente Coordinador iniciado: " + getLocalName());
@@ -21,13 +21,6 @@ public class CoordinadorAgent extends Agent {
                 "servicio-coordinacion",
                 "coordinador-delivery"
         );
-
-        // Menú hardcodeado
-        menuRestaurantes = new HashMap<>();
-        menuRestaurantes.put("pizza", "RestauranteA");
-        menuRestaurantes.put("pasta", "RestauranteA");
-        menuRestaurantes.put("hamburguesa", "RestauranteB");
-        menuRestaurantes.put("sushi", "RestauranteC");
 
         addBehaviour(new RecibirPedidos());
     }
@@ -46,31 +39,25 @@ public class CoordinadorAgent extends Agent {
 
                 System.out.println("Pedido recibido: " + pedidoID + " - " + plato);
 
-                String restauranteAsignado = asignarRestaurante(plato);
-
-                if (restauranteAsignado == null) {
-                    ACLMessage fallo = msg.createReply();
-                    fallo.setPerformative(ACLMessage.FAILURE);
-                    fallo.setContent("No existe restaurante para el plato: " + plato);
-                    send(fallo);
-                    return;
-                }
-
-                // Buscar restaurantes en DF
                 DFAgentDescription[] restaurantes =
                         YellowPagesManager.buscarServicio(myAgent, "servicio-restaurante");
 
                 if (restaurantes != null && restaurantes.length > 0) {
-                    AID restaurante = restaurantes[0].getName();
 
-                    ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
-                    req.addReceiver(restaurante);
-                    req.setContent(contenido);
-                    req.setConversationId(msg.getConversationId());
+                    // Enviar a TODOS los restaurantes disponibles
+                    // El primero que tenga el plato responderá
+                    for (DFAgentDescription desc : restaurantes) {
+                        AID restaurante = desc.getName();
 
-                    send(req);
+                        ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+                        req.addReceiver(restaurante);
+                        req.setContent(contenido);
+                        req.setConversationId(msg.getConversationId());
 
-                    System.out.println("Pedido enviado a restaurante");
+                        send(req);
+                    }
+
+                    System.out.println("Pedido enviado a " + restaurantes.length + " restaurantes");
 
                 } else {
                     ACLMessage fallo = msg.createReply();
@@ -82,15 +69,6 @@ public class CoordinadorAgent extends Agent {
                 block();
             }
         }
-    }
-
-    private String asignarRestaurante(String plato) {
-        for (String key : menuRestaurantes.keySet()) {
-            if (plato.contains(key)) {
-                return menuRestaurantes.get(key);
-            }
-        }
-        return null;
     }
 
     protected void takeDown() {

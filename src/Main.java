@@ -24,6 +24,44 @@ public class Main {
                     null
             );
             coordinador.start();
+            Thread.sleep(500);
+
+            System.out.println("Creando restaurantes...");
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // RESTAURANTE A - Pizza y Pasta
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            AgentController restauranteA = contenedor.createNewAgent(
+                    "RestauranteA",
+                    "agentes.RestauranteAgent",
+                    new Object[]{"Pizzeria Luigi", "pizza,pasta"}
+                    //               ↑ nombre        ↑ platos que ofrece
+            );
+            restauranteA.start();
+            Thread.sleep(500);
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // RESTAURANTE B - Hamburguesa
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            AgentController restauranteB = contenedor.createNewAgent(
+                    "RestauranteB",
+                    "agentes.RestauranteAgent",
+                    new Object[]{"Burger King", "hamburguesa"}
+            );
+            restauranteB.start();
+            Thread.sleep(500);
+
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            // RESTAURANTE C - Sushi
+            // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            AgentController restauranteC = contenedor.createNewAgent(
+                    "RestauranteC",
+                    "agentes.RestauranteAgent",
+                    new Object[]{"Sushi Master", "sushi"}
+            );
+            restauranteC.start();
+            Thread.sleep(1000);
+
 
             // 5️⃣ AGENTE CLIENTE (Persona 1)
             AgentController cliente = contenedor.createNewAgent(
