@@ -27,7 +27,7 @@ El Agente Cliente es responsable de:
 - Enviar mensajes REQUEST al coordinador
 - Recibir confirmacion del pedido
 
-## Agente Restaurante (Trabajo de Marilu Huarcaya Alva)
+## Agente Restaurante
 
 El Agente Restaurante se encarga de:
 - Registrarse como **"servicio-restaurante"** en Yellow Pages  
