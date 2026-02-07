@@ -4,7 +4,7 @@ Sistema distribuido de gestion de pedidos de delivery implementado con JADE (Jav
 
 ## Participantes
 - Ashly Chavez 22200012
-- 
+- Ashly Surichaqui 22200207
 ## Descripcion
 
 Este proyecto simula un sistema de delivery donde agentes autonomos colaboran para gestionar pedidos desde la solicitud hasta la entrega. Los agentes se comunican mediante mensajes ACL siguiendo el estandar FIPA.
@@ -34,6 +34,7 @@ delivery-jade/
 │   └── agentes/
 │       ├── ClienteAgent.java
 │       ├── CoordinadorAgent.java
+│       ├── YellowPagesManager.java
 │       ├── RestauranteAgent.java
 │       └── RepartidorAgent.java
 ├── lib/
