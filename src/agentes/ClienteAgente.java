@@ -34,23 +34,28 @@ public class ClienteAgente extends Agent {
             doDelete();
         }
     }
-
     private class SolicitarPedido extends Behaviour {
 
         private AID coordinador;
         private int paso = 0;
         private boolean pedidoConfirmado = false;
+        private boolean mensajeMostrado = false;  // <-- NUEVO
 
         public void action() {
             switch (paso) {
                 case 0:
                     coordinador = buscarCoordinador();
                     if (coordinador != null) {
-                        System.out.println("Coordinador encontrado: " + coordinador.getName());
+                        System.out.println("\n========================================");
+                        System.out.println("COORDINADOR ENCONTRADO");
+                        System.out.println("========================================\n");
                         paso = 1;
                     } else {
-                        System.out.println("Esperando coordinador...");
-                        block(1000);
+                        if (!mensajeMostrado) {  // <-- NUEVO: Solo mostrar una vez
+                            System.out.println("Esperando coordinador...");
+                            mensajeMostrado = true;
+                        }
+                        block(5000);  // Sigue buscando cada 5 segundos, pero sin imprimir
                     }
                     break;
 
@@ -93,7 +98,6 @@ public class ClienteAgente extends Agent {
             return super.onEnd();
         }
     }
-
     private AID buscarCoordinador() {
         DFAgentDescription template = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
