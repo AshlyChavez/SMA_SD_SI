@@ -20,6 +20,8 @@ El sistema consta de 4 agentes:
 - **Restaurante**: Prepara los pedidos solicitados
 - **Repartidor**: Entrega los pedidos al cliente
 
+Flujo general: Cliente → Coordinador → Restaurante → Repartidor → Cliente
+
 ## Agente Cliente
 
 El Agente Cliente es responsable de:
@@ -40,6 +42,20 @@ El Agente Restaurante se encarga de:
 - Simular la preparación de los platos (esperar X segundos según el tiempo del menú)  
 - Buscar agentes **Repartidor** en Yellow Pages  
 - Enviar un mensaje INFORM al Repartidor con los detalles del pedido   
+
+## Agente Repartidor
+
+El Agente Repartidor se encarga de:
+- Registrarse como "servicio-repartidor" en Yellow Pages
+- Recibir pedidos listos desde el Restaurante
+- Calcular distancia, costo de envío y tiempo estimado
+- Calcular el total a pagar
+- Enviar la confirmación final al Cliente
+
+Zonas de entrega:
+- Zona Norte: 5 km, $10
+- Zona Centro: 2 km, $5
+- Zona Sur: 8 km, $15
 
 ## Estructura del Proyecto
 ```
